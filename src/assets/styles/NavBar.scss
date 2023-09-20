@@ -1,0 +1,55 @@
+@use "./global/" as *;
+
+.navbar {
+  @include alignCenter;
+  background-color: $white;
+  padding: rem(20) rem(40);
+  justify-content: space-between;
+
+  &-header {
+    @include alignCenter;
+    gap: rem(20);
+    // outline: 1px solid rgb(185, 65, 65);
+
+    &_title {
+      font-size: rem(40);
+      font-weight: 700;
+    }
+
+    &_form {
+      @include alignCenter;
+      width: rem(450);
+      height: rem(45);
+      border: rem(1) solid $bdr-clr;
+      border-radius: rem(100);
+      overflow: hidden;
+
+      .navbar_search {
+        flex: 1;
+        height: 100%;
+        padding: 0 rem(12);
+        font-size: 1em;
+        border: none;
+        outline: none;
+      }
+
+      .navbar_search__btn {
+        height: 100%;
+        width: rem(45);
+        padding: 0 rem(8);
+        outline: none;
+        border: none;
+        background: $accent;
+        color: $white;
+        border-radius: inherit;
+        cursor: pointer;
+        font-size: rem(20);
+      }
+    }
+  }
+
+  &_links {
+    @include alignCenter;
+    gap: rem(20);
+  }
+}

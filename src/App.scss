@@ -1,0 +1,6 @@
+@use "./assets/styles/index.scss" as *;
+
+.app {
+  display: grid;
+  grid-template-rows: rem(80) auto;
+}
