@@ -1,0 +1,33 @@
+@use "./index.scss" as *;
+
+.product_list_section {
+  padding: rem(10);
+  padding-left: rem(30);
+
+  .product_list_header {
+    @include alignCenter;
+    justify-content: space-between;
+    margin-bottom: rem(30);
+
+    h2 {
+      font-size: rem(26);
+    }
+
+    .product_sort {
+      font-size: rem(18);
+      font-weight: 500;
+      height: rem(35);
+      padding-inline: rem(5);
+      outline: none;
+      border: none;
+      border-radius: rem(5);
+    }
+  }
+
+  .products_list {
+    @include alignCenter;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: rem(30);
+  }
+}

@@ -1,0 +1,17 @@
+@use "./index.scss" as *;
+
+.feature-container {
+  margin: rem(65);
+
+  h2 {
+    font-size: rem(48);
+    margin-bottom: rem(65);
+    text-align: center;
+  }
+
+  .featured_products_list {
+    @include alignCenter;
+    justify-content: space-evenly;
+    margin-bottom: rem(65);
+  }
+}

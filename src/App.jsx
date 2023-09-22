@@ -5,12 +5,17 @@ import NavBar from "./components/NavBar";
 
 // style
 import "./App.scss";
+import Home from "./pages/Home";
+import ProductPage from "./pages/ProductPage";
 
 const App = () => {
   return (
     <div className="app">
       <NavBar />
-      <main>All routing</main>
+      <main>
+        {/* <Home /> */}
+        <ProductPage />
+      </main>
     </div>
   );
 };

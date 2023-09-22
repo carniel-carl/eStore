@@ -3,6 +3,11 @@ import React, { useEffect } from "react";
 import "./../assets/styles/NavBar.scss";
 
 import { BsCart4, BsSearch } from "react-icons/bs";
+import { FaHome } from "react-icons/fa";
+import { IoStorefrontSharp } from "react-icons/io5";
+import { BiListCheck } from "react-icons/bi";
+
+import LinkWithIcon from "./UI/LinkWithIcon";
 
 const NavBar = () => {
   // useEffect(() => {
@@ -31,16 +36,16 @@ const NavBar = () => {
 
       <ul className="navbar_links">
         <li>
-          <a href="#">Home</a>
+          <LinkWithIcon title="Home" icon={<FaHome />} to="/" />
         </li>
         <li>
-          <a href="#">Products</a>
+          <LinkWithIcon title="Products" icon={<IoStorefrontSharp />} to="/" />
         </li>
         <li>
-          <a href="#">Order</a>
+          <LinkWithIcon title="Order " icon={<BiListCheck />} to="/" />
         </li>
         <li>
-          <a href="#" className="cart">
+          <a href="/" className="cart">
             <BsCart4 className="cart_icon" />{" "}
             <span className="order_count">0</span>
           </a>

@@ -1,0 +1,58 @@
+@use "./index.scss" as *;
+
+.hero-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  height: rem(550);
+  padding-inline: rem(60);
+  background: $black;
+  color: $white;
+  overflow: hidden;
+
+  .hero-text {
+    @include alignCenter;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .hero_title {
+      font-size: rem(45);
+      font-weight: 700;
+      margin-bottom: rem(50);
+    }
+
+    .hero_subtitle {
+      font-size: rem(24);
+      margin-bottom: rem(32);
+      width: 70%;
+    }
+
+    .hero_btn {
+      padding: rem(16) rem(32);
+      text-transform: uppercase;
+      letter-spacing: rem(1.5);
+      font-weight: 700;
+      border: rem(1) solid $bdr-clr;
+      border-radius: rem(32);
+      background: $white;
+      color: $black;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: transparent;
+        color: $white;
+      }
+    }
+  }
+
+  .hero_img {
+    height: rem(500);
+    object-fit: cover;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

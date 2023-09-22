@@ -1,0 +1,12 @@
+@use "./index.scss" as *;
+
+.product_sidebar {
+  padding: rem(10) rem(20);
+  border-radius: rem(5);
+  background: $white;
+
+  h2 {
+    font-size: rem(26);
+    margin-bottom: rem(10);
+  }
+}

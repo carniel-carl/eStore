@@ -1,0 +1,45 @@
+@use "./../index.scss" as *;
+
+.icon-link {
+  @include alignCenter;
+  gap: rem(8);
+  font-size: rem(18);
+  position: relative;
+  transition: all 0.5s ease-in-out;
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: rem(2);
+    background: $accent;
+    position: absolute;
+    border-radius: rem(5);
+    bottom: -30%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &.sidebar_link {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    font-size: rem(21);
+    padding: rem(10) rem(15);
+    border-radius: rem(5);
+    transition: all 0.15s ease-in-out;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      background: $bdr-clr;
+    }
+  }
+}

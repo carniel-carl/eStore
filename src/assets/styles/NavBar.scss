@@ -1,9 +1,9 @@
-@use "./global/" as *;
+@use "./index.scss" as *;
 
 .navbar {
   @include alignCenter;
   background-color: $white;
-  padding: rem(20) rem(40);
+  padding: rem(20) rem(50);
   justify-content: space-between;
 
   &-header {
@@ -43,13 +43,41 @@
         color: $white;
         border-radius: inherit;
         cursor: pointer;
-        font-size: rem(20);
+        font-size: rem(18);
       }
     }
   }
 
   &_links {
     @include alignCenter;
-    gap: rem(20);
+    gap: rem(30);
+
+    .cart {
+      position: relative;
+      display: inline-flex;
+      transition: all 0.3s ease-in-out;
+
+      &_icon {
+        font-size: rem(25);
+      }
+
+      .order_count {
+        position: absolute;
+        top: -60%;
+        right: -70%;
+        width: rem(25);
+        height: rem(25);
+        @include alignCenter;
+        justify-content: center;
+        background: $accent;
+        border-radius: rem(100);
+        font-size: 1em;
+        color: $white;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
 }
