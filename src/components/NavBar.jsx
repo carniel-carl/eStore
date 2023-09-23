@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "./../assets/styles/NavBar.scss";
 
@@ -8,14 +8,9 @@ import { IoStorefrontSharp } from "react-icons/io5";
 import { BiListCheck } from "react-icons/bi";
 
 import LinkWithIcon from "./UI/LinkWithIcon";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
-  // useEffect(() => {
-  //   fetch("https://dummyjson.com/products")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-  // });
-
   return (
     <nav className="navbar">
       <div className="navbar-header">
@@ -39,16 +34,20 @@ const NavBar = () => {
           <LinkWithIcon title="Home" icon={<FaHome />} to="/" />
         </li>
         <li>
-          <LinkWithIcon title="Products" icon={<IoStorefrontSharp />} to="/" />
+          <LinkWithIcon
+            title="Products"
+            icon={<IoStorefrontSharp />}
+            to="/products"
+          />
         </li>
         <li>
-          <LinkWithIcon title="Order " icon={<BiListCheck />} to="/" />
+          <LinkWithIcon title="Order " icon={<BiListCheck />} to="/orders" />
         </li>
         <li>
-          <a href="/" className="cart">
-            <BsCart4 className="cart_icon" />{" "}
+          <NavLink to="/cart" className="cart">
+            <BsCart4 className="cart_icon" />
             <span className="order_count">0</span>
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>

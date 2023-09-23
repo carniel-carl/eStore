@@ -4,6 +4,8 @@
   padding: rem(10) rem(20);
   border-radius: rem(5);
   background: $white;
+  height: 85vh;
+  overflow-y: auto;
 
   h2 {
     font-size: rem(26);

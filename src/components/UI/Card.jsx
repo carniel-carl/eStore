@@ -2,22 +2,26 @@ import React from "react";
 
 import "../../assets/styles/UI/Card.scss";
 import laptop from "../../assets/images/laptop.jpeg";
+import { Link } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ id, image, title, price, rating, stock }) => {
   return (
     <article className="product_card">
       <div className="product_image">
-        <a href="product/1">
-          <img src={laptop} alt="product image" />
-        </a>
+        <Link to={`/${id}`}>
+          <img src={image} alt={title} />
+        </Link>
       </div>
       <div className="product_detail">
-        <h3 className="product_price">$999</h3>
-        <p className="product_title">Iphone 14 pro</p>
+        <h3 className="product_price">${price ? price.toFixed(2) : 100}</h3>
+        <p className="product_title">
+          {title ? title.substring(0, 20) : "Iphone 14"}
+          {title && title.length > 20 && "..."}
+        </p>
         <footer className="product_info_footer">
-          <p className="product_rating">5.0</p>
+          <p className="product_rating">{rating}</p>
 
-          <button className="add_to_cart">Add to cart </button>
+          {stock > 0 && <button className="add_to_cart">Add to cart </button>}
         </footer>
       </div>
     </article>

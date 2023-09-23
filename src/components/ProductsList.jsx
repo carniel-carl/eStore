@@ -2,8 +2,11 @@ import React from "react";
 
 import "../assets/styles/ProductsList.scss";
 import Card from "./UI/Card";
+import useFetch from "../hooks/useFetch";
 
 const ProductsList = () => {
+  const { data, errors } = useFetch();
+
   return (
     <section className="product_list_section">
       <header className="product_list_header">
@@ -18,19 +21,20 @@ const ProductsList = () => {
       </header>
 
       <div className="products_list">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {errors && <em className="error">{errors}</em>}
+
+        {data?.products &&
+          data.products.map((product) => (
+            <Card
+              key={product.id}
+              id={`product/${product.id}`}
+              image={product.images[0]}
+              title={product.title}
+              price={product.price}
+              rating={product.rating}
+              stock={product.stock}
+            />
+          ))}
       </div>
     </section>
   );

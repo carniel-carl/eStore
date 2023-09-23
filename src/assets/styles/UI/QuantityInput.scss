@@ -1,0 +1,22 @@
+@use "../index.scss" as *;
+
+.quantity_input_btn {
+  width: rem(35);
+  height: rem(35);
+  font-size: rem(25);
+  border: none;
+  outline: none;
+  background: $qty-clr;
+  border-radius: 100%;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+.quantity_count {
+  margin-inline: rem(15);
+  text-align: center;
+}

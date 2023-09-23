@@ -1,0 +1,79 @@
+@use "./index.scss" as *;
+
+.single_product {
+  @include alignCenter;
+  justify-content: center;
+  padding: rem(32) rem(48);
+
+  > div {
+    // flex: 1;
+  }
+
+  .image_container {
+    @include alignCenter;
+
+    .single_product_thumbnails {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: rem(14);
+      padding: rem(8);
+      margin: rem(16);
+
+      img {
+        width: rem(80);
+        height: rem(80);
+        object-fit: cover;
+        border-radius: rem(5);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        opacity: 0.5;
+      }
+
+      .selected_image {
+        transform: scale(1.12);
+        opacity: 1;
+      }
+    }
+
+    .single_product_display {
+      width: rem(500);
+      height: rem(500);
+      object-fit: cover;
+      border-radius: rem(10);
+    }
+  }
+
+  .text_container {
+    width: 35%;
+    padding: rem(16) rem(24);
+
+    .single_product_title {
+      font-size: rem(32);
+      margin-bottom: rem(16);
+    }
+
+    .single_product_description {
+      font-size: rem(16);
+      line-height: 1.4;
+    }
+
+    .single_product_price {
+      margin-block: rem(16);
+      font-size: rem(24);
+      font-weight: 700;
+    }
+
+    .quantity_title {
+      font-size: rem(20);
+      font-weight: 700;
+    }
+
+    .quantity_input {
+      @include alignCenter;
+      font-size: rem(18);
+      font-weight: 500;
+      margin-block: rem(5) rem(16);
+    }
+  }
+}

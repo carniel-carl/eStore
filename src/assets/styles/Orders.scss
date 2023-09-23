@@ -1,0 +1,16 @@
+@use "./index.scss" as *;
+
+.orders_page {
+  @include alignCenter;
+  flex-direction: column;
+  h2 {
+    text-align: center;
+    margin-block: rem(32);
+  }
+
+  .order_table {
+    background: $white;
+    border-radius: rem(5);
+    overflow: hidden;
+  }
+}

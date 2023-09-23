@@ -1,0 +1,48 @@
+@use "../index.scss" as *;
+
+.common_table {
+  border-collapse: collapse;
+  width: 80vw;
+
+  thead {
+    th {
+      padding: rem(10);
+      background: darken($color: $bdr-clr, $amount: 10);
+      text-transform: uppercase;
+      height: rem(65);
+      font-weight: 700;
+
+      &:not(:nth-child(2)) {
+        width: 15%;
+      }
+    }
+  }
+
+  td {
+    text-align: center;
+
+    padding: rem(20);
+    font-size: rem(20);
+
+    &:last-child {
+      .status {
+        padding: 0.4em;
+        border-radius: 2rem;
+
+        &.delivered {
+          background: $del-clr;
+          color: $del-txt;
+        }
+
+        &.cancelled {
+          background: $cancelled-clr;
+          color: $cancelled-txt;
+        }
+      }
+    }
+  }
+
+  tbody tr:nth-of-type(even) {
+    background: lighten($bdr-clr, 10);
+  }
+}

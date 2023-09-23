@@ -2,14 +2,14 @@ import React from "react";
 
 import "./../../assets/styles/UI/LinkWithIcon.scss";
 
-import { FaHome } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const LinkWithIcon = ({ title, icon, to, sidebar }) => {
   return (
-    <a href={to} className={`icon-link ${sidebar && " sidebar_link"}`}>
+    <NavLink to={to} className={`icon-link ${sidebar && " sidebar_link"}`}>
       {title}
       {icon}
-    </a>
+    </NavLink>
   );
 };
 
