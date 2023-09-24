@@ -9,6 +9,7 @@
   background: $qty-clr;
   border-radius: 100%;
   cursor: pointer;
+  user-select: none;
 
   &:disabled {
     opacity: 0.3;

@@ -9,8 +9,13 @@ import { BiListCheck } from "react-icons/bi";
 
 import LinkWithIcon from "./UI/LinkWithIcon";
 import { NavLink } from "react-router-dom";
+import { productContext } from "../context/Context";
 
 const NavBar = () => {
+  const {
+    state: { cart },
+  } = productContext();
+
   return (
     <nav className="navbar">
       <div className="navbar-header">
@@ -46,7 +51,7 @@ const NavBar = () => {
         <li>
           <NavLink to="/cart" className="cart">
             <BsCart4 className="cart_icon" />
-            <span className="order_count">0</span>
+            <span className="order_count">{cart.length}</span>
           </NavLink>
         </li>
       </ul>

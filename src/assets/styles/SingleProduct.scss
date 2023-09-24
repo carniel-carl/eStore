@@ -1,13 +1,14 @@
 @use "./index.scss" as *;
 
+.back {
+  width: fit-content;
+  margin-left: min(rem(120), 20vw);
+  margin-top: rem(10);
+}
 .single_product {
   @include alignCenter;
   justify-content: center;
   padding: rem(32) rem(48);
-
-  > div {
-    // flex: 1;
-  }
 
   .image_container {
     @include alignCenter;
@@ -24,10 +25,11 @@
         width: rem(80);
         height: rem(80);
         object-fit: cover;
+        object-position: center;
         border-radius: rem(5);
         cursor: pointer;
         transition: all 0.2s ease-in-out;
-        opacity: 0.5;
+        opacity: 0.3;
       }
 
       .selected_image {
@@ -40,6 +42,7 @@
       width: rem(500);
       height: rem(500);
       object-fit: cover;
+      object-position: center;
       border-radius: rem(10);
     }
   }

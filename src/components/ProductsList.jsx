@@ -67,6 +67,7 @@ const ProductsList = () => {
               price={product.price}
               rating={product.rating}
               stock={product.stock}
+              product={product}
             />
           ))}
       </div>

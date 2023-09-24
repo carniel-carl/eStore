@@ -1,58 +1,97 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../assets/styles/SingleProduct.scss";
 import QuantityInput from "../components/UI/QuantityInput";
-
-const product = {
-  id: 1,
-  title: "Product Title",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime aliquid rerum a? Fugiat soluta facilis deleniti voluptatibus ab architecto dolores a, vero, beatae veniam error doloribus quia laudantium? Error fuga consequuntur quia accusantium? Consequatur modi laboriosam saepe culpa, ab atque.",
-  price: 9.9,
-  images: [
-    "https://via.placeholder.com/500x500?text=Product+Image+1",
-    "https://via.placeholder.com/500x500?text=Product+Image+2",
-    "https://via.placeholder.com/500x500?text=Product+Image+3",
-    "https://via.placeholder.com/500x500?text=Product+Image+4",
-  ],
-  stock: 10,
-};
+import { useParams } from "react-router-dom";
+import apiClient from "../utils/api-client";
+import LinkWithIcon from "../components/UI/LinkWithIcon";
+import { BsArrowLeft } from "react-icons/bs";
+import { productContext } from "../context/Context";
 
 const SingleProduct = () => {
+  const { id } = useParams();
+
   const [selectedImage, setSelectedImage] = useState(0);
 
+  const [quantity, setQuantity] = useState(1);
+
+  const [product, setProduct] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    apiClient
+      .get(`/${id}`)
+      .then((res) => {
+        setLoading(false);
+        setProduct(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setError(err.message);
+      });
+  }, [id]);
+
+  const {
+    state: { cart },
+    addToBasket,
+  } = productContext();
+
+  let imagePreview =
+    product.images?.length > 1 ? product.images[selectedImage] : product.images;
+
   return (
-    <section className="single_product">
-      <div className="image_container">
-        <div className="single_product_thumbnails">
-          {product.images.map((image, index) => {
-            return (
-              <img
-                src={image}
-                key={index}
-                className={selectedImage === index && "selected_image"}
-                onClick={() => setSelectedImage(index)}
-              />
-            );
-          })}
-        </div>
-
-        <img
-          src={product.images[selectedImage]}
-          alt={product.title}
-          className="single_product_display"
+    <section>
+      {loading && <p>Loading...</p>}
+      {error && <em>{error}</em>}
+      <nav className="back">
+        <LinkWithIcon
+          title="Go Back"
+          icon={<BsArrowLeft />}
+          to={`/products?category=${product.category}`}
+          sidebar={true}
         />
-      </div>
-      <div className="text_container">
-        <h2 className="single_product_title">{product.title}</h2>
-        <p className="single_product_description">{product.description}</p>
-        <p className="single_product_price">${product.price.toFixed(2)}</p>
-        <h2 className="quantity_title">Quantity:</h2>
-        <div className="quantity_input">
-          <QuantityInput />
+      </nav>
+      <div className="single_product">
+        <div className="image_container">
+          <div className="single_product_thumbnails">
+            {product.images?.map((image, index) => {
+              return (
+                <img
+                  src={image}
+                  key={index}
+                  className={selectedImage === index ? "selected_image" : ""}
+                  onClick={() => setSelectedImage(index)}
+                />
+              );
+            })}
+          </div>
+          <img
+            src={imagePreview}
+            alt={product.title}
+            className="single_product_display"
+          />
         </div>
-
-        <button className="add_to_cart">Add to cart</button>
+        <div className="text_container">
+          <h2 className="single_product_title">{product.title}</h2>
+          <p className="single_product_description">{product.description}</p>
+          <p className="single_product_price">${product.price}</p>
+          <h2 className="quantity_title">Quantity:</h2>
+          <div className="quantity_input">
+            <QuantityInput
+              quantity={quantity}
+              setQuantity={setQuantity}
+              stock={product.stock}
+            />
+          </div>
+          <button
+            className="add_to_cart"
+            onClick={() => addToBasket(product, quantity)}
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
     </section>
   );

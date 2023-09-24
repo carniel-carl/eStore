@@ -10,7 +10,9 @@ import { useSearchParams } from "react-router-dom";
 const ProductSideBar = () => {
   // ----------USESEARCHPARAMS TO UPDATE THE URL FOR SELECTED CATEGORY---------------------
 
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  let selectedCategory = searchParams.get("category");
 
   // ----------GETTING THE CATEGORIES FROM CONTEXT STORE-----------------------
   const {
@@ -47,6 +49,7 @@ const ProductSideBar = () => {
             value="all"
             onChange={handleChange}
             id="all"
+            checked={selectedCategory === "all"}
           />
           All
         </label>
@@ -58,6 +61,7 @@ const ProductSideBar = () => {
               value={category}
               onChange={handleChange}
               id={category}
+              checked={selectedCategory === category}
             />
 
             {category}

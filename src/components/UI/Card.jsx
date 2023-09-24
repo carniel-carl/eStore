@@ -1,10 +1,12 @@
 import React from "react";
 
 import "../../assets/styles/UI/Card.scss";
-import laptop from "../../assets/images/laptop.jpeg";
 import { Link } from "react-router-dom";
+import { productContext } from "../../context/Context";
 
-const Card = ({ id, image, title, price, rating, stock }) => {
+const Card = ({ id, image, title, price, rating, stock, product }) => {
+  const { addToBasket } = productContext();
+
   return (
     <article className="product_card">
       <div className="product_image">
@@ -21,7 +23,14 @@ const Card = ({ id, image, title, price, rating, stock }) => {
         <footer className="product_info_footer">
           <p className="product_rating">{rating}</p>
 
-          {stock > 0 && <button className="add_to_cart">Add to cart </button>}
+          {stock > 0 && (
+            <button
+              className="add_to_cart"
+              onClick={() => addToBasket(product, 1)}
+            >
+              Add to cart{" "}
+            </button>
+          )}
         </footer>
       </div>
     </article>
