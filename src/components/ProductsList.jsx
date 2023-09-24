@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 
 import "../assets/styles/ProductsList.scss";
 import Card from "./UI/Card";
-import useFetch from "../hooks/useFetch";
+import { productContext } from "../context/Context";
+import apiClient from "../utils/api-client";
+import { useSearchParams } from "react-router-dom";
 
 const ProductsList = () => {
-  const { data, errors } = useFetch();
+  // ----------USESEARCHPARAMS TO GET SELECTED CATEGORY---------------------
+  const [searchParams, _] = useSearchParams();
+
+  let filteredCategory = searchParams.get("category");
+
+  // ----------GETTING THE PRODUCTS FROM CONTEXT STORE-----------------------
+
+  const {
+    state: { products, productErrors },
+    dispatch,
+  } = productContext();
+
+  // ----------SETTING THE PRODUCTS GOTTEN FROM API TO CONTEXT STORE-----------------------
+
+  useEffect(() => {
+    if (!products || filteredCategory === "all" || !filteredCategory) {
+      apiClient
+        .get()
+        .then((res) => dispatch({ type: "ALL_PRODUCTS", payload: res.data }))
+        .catch((err) =>
+          dispatch({ type: "ALL_PRODUCTS_ERRORS", payload: err.message })
+        );
+    }
+
+    if (filteredCategory && filteredCategory !== "all") {
+      apiClient
+        .get(`/category/${filteredCategory}`)
+        .then((res) => dispatch({ type: "ALL_PRODUCTS", payload: res.data }))
+        .catch((err) =>
+          dispatch({ type: "ALL_PRODUCTS_ERRORS", payload: err.message })
+        );
+    }
+  }, [filteredCategory]);
 
   return (
     <section className="product_list_section">
@@ -21,10 +55,10 @@ const ProductsList = () => {
       </header>
 
       <div className="products_list">
-        {errors && <em className="error">{errors}</em>}
+        {productErrors && <em className="error">{productErrors}</em>}
 
-        {data?.products &&
-          data.products.map((product) => (
+        {products?.products &&
+          products.products.map((product) => (
             <Card
               key={product.id}
               id={`product/${product.id}`}

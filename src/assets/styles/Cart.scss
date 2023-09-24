@@ -118,6 +118,7 @@
         p {
           font-size: rem(18);
           font-weight: 500;
+          user-select: none;
 
           .tax {
             font-size: rem(10);
@@ -133,6 +134,7 @@
         p {
           font-size: rem(24);
           font-weight: 700;
+          user-select: none;
         }
       }
 

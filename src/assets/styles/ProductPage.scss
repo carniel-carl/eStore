@@ -3,5 +3,6 @@
 .product-page {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  padding: rem(20);
+  padding-inline: rem(20);
+  max-height: 100vh;
 }

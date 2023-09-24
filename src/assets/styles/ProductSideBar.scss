@@ -4,11 +4,41 @@
   padding: rem(10) rem(20);
   border-radius: rem(5);
   background: $white;
-  height: 85vh;
+  height: 88vh;
   overflow-y: auto;
 
   h2 {
     font-size: rem(26);
     margin-bottom: rem(10);
+  }
+
+  .category_links {
+    .category_btn {
+      display: block;
+      width: 100%;
+      height: rem(45);
+      line-height: rem(45);
+      padding-inline-start: rem(4);
+      text-transform: capitalize;
+      transition: all 0.3s ease-in-out;
+      font-size: rem(20);
+
+      input {
+        display: none;
+      }
+
+      &:hover {
+        background: lighten($bdr-clr, 15%);
+      }
+    }
+
+    .category_btn:has(input:checked) {
+      background: $accent;
+      color: $white;
+    }
+
+    // .category_btn:not(:last-of-type) {
+    //   margin-bottom: rem(8);
+    // }
   }
 }
