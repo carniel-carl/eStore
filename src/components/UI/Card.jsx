@@ -28,7 +28,7 @@ const Card = ({ id, image, title, price, rating, stock, product }) => {
               className="add_to_cart"
               onClick={() => addToBasket(product, 1)}
             >
-              Add to cart{" "}
+              Add to cart
             </button>
           )}
         </footer>

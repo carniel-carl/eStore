@@ -14,12 +14,18 @@ const Context = ({ children }) => {
     categoryErrors: false,
   });
 
-  const updateQty = (id) => {
+  const updateQty = (type, id) => {
     let updatedCart = [...state.cart];
 
-    const productIndex = updatedCart.find((c) => c.id === id);
-
-    updatedCart[productIndex] += 1;
+    const productIndex = updatedCart.findIndex((c) => c.id === id);
+    if (type === "increase") {
+      updatedCart[productIndex].qty += 1;
+      cart = updatedCart[productIndex];
+    }
+    if (type === "decrease") {
+      updatedCart[productIndex].qty -= 1;
+      cart = updatedCart[productIndex];
+    }
   };
 
   // -----------------ADD ITEM TO BASKET---------------------------------
@@ -43,7 +49,7 @@ const Context = ({ children }) => {
   // -----------------CONTEXT PROVIDER----------------------------------
 
   return (
-    <Products.Provider value={{ state, dispatch, addToBasket }}>
+    <Products.Provider value={{ state, dispatch, addToBasket, updateQty }}>
       {children}
     </Products.Provider>
   );

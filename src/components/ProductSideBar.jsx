@@ -25,7 +25,9 @@ const ProductSideBar = () => {
     if (!categories) {
       apiClient
         .get("/categories")
-        .then((res) => dispatch({ type: "ALL_CATEGORY", payload: res.data }))
+        .then((res) => {
+          dispatch({ type: "ALL_CATEGORY", payload: res.data });
+        })
         .catch((err) =>
           dispatch({ type: "ALL_CATEGORY_ERRORS", payload: err.message })
         );
@@ -54,17 +56,17 @@ const ProductSideBar = () => {
           All
         </label>
         {categories?.map((category, index) => (
-          <label htmlFor={category} key={index} className="category_btn">
+          <label htmlFor={category.name} key={index} className="category_btn">
             <input
               type="radio"
               name="categories"
-              value={category}
+              value={category.name}
               onChange={handleChange}
-              id={category}
-              checked={selectedCategory === category}
+              id={category.name}
+              checked={selectedCategory === category.name}
             />
 
-            {category}
+            {category?.name}
           </label>
         ))}
       </div>
